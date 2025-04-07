@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Identification Demo</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Face Identification</h1>
+        <h2>Web Demo</h2>
+        
+        <div class="about">
+            This is a face identification web demo. First download an image from Google Drive, then upload it using the browse button.
+        </div>
+        
+        <form id="uploadForm" action="/process_input" method="POST" enctype="multipart/form-data">
+            <!-- Step 1: Download from Drive -->
+            <div class="download-section">
+                <a href="https://drive.google.com/drive/folders/1bavorJ6fsITRDxQHA9Vs2HiDB397GhqF?usp=sharing" class="action-btn drive-btn" target="_blank">
+                    Download Image from Drive
+                </a>
+                <p class="hint">(Save the image to your computer first)</p>
+            </div>
+            
+            <!-- Step 2: Upload Local File -->
+            <div class="upload-section">
+                <label class="file-upload-label" id="fileUploadLabel">
+                    <span id="fileUploadText">Browse to Upload Image</span>
+                    <input type="file" id="fileUpload" name="image" accept="image/*">
+                </label>
+                <div id="fileError" class="error-message">No image uploaded</div>
+            </div>
+            
+            <!-- Feature Selection -->
+            <div class="form-group">
+                <label for="feature_extraction_method">Select Feature Extraction Technique</label>
+                <select id="feature_extraction_method" name="feature_extraction_method">
+                    <option value="">Select an option</option>
+                    <option value="CNN">CNN_extraction</option>
+                    <option value="LBP">LBP_extraction</option>
+                </select>
+                <div id="methodError" class="error-message">Please select a feature extraction method</div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Process Image</button>
+        </form>
+    </div>
+
+    <script>
+        // Form validation
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            let isValid = true;
+            
+            // Check if file is selected
+            const fileInput = document.getElementById('fileUpload');
+            if (!fileInput.files || fileInput.files.length === 0) {
+                document.getElementById('fileError').style.display = 'block';
+                fileInput.classList.add('has-error');
+                isValid = false;
+            } else {
+                document.getElementById('fileError').style.display = 'none';
+                fileInput.classList.remove('has-error');
+            }
+            
+            // Check if method is selected
+            const methodSelect = document.getElementById('feature_extraction_method');
+            if (!methodSelect.value) {
+                document.getElementById('methodError').style.display = 'block';
+                methodSelect.classList.add('has-error');
+                isValid = false;
+            } else {
+                document.getElementById('methodError').style.display = 'none';
+                methodSelect.classList.remove('has-error');
+            }
+            
+            if (!isValid) {
+                e.preventDefault();
+                // Scroll to first error
+                document.querySelector('.error-message[style*="display: block"]')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        });
+
+        // File input change handler
+        document.getElementById('fileUpload').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'Browse to Upload Image';
+            document.getElementById('fileUploadText').textContent = fileName;
+            
+            // Visual feedback
+            const label = document.getElementById('fileUploadLabel');
+            if (e.target.files[0]) {
+                label.classList.add('file-selected');
+                document.getElementById('fileError').style.display = 'none';
+                e.target.classList.remove('has-error');
+            } else {
+                label.classList.remove('file-selected');
+            }
+        });
+    </script>
+</body>
+</html>
