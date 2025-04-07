@@ -13,7 +13,7 @@
         <!-- Input Image Section -->
         <div class="result-section">
             <div class="result-title">Input Image</div>
-            <img id="inputImage" class="result-image" src="{{ image_path }}" alt="Input Image">
+            <img id="inputImage" class="result-image" src="{{ url_for('static', filename=input_image) }}" alt="Input Image">
         </div>
         
         <!-- Predicted Name Section -->
@@ -25,7 +25,7 @@
         <!-- Predicted Image Section -->
         <div class="result-section">
             <div class="result-title">Predicted Person Image</div>
-            <img id="predictedImage" class="result-image" src="{{ predicted_image_path }}" alt="Predicted Person Image">
+            <img id="predictedImage" class="result-image" src="{{ url_for('static', filename=predicted_image) }}" alt="Predicted Person Image">
         </div>
         
         <div style="text-align: center;">
@@ -34,14 +34,17 @@
     </div>
 
     <script>
-        // You can add JavaScript here if needed for additional functionality
-        // For example, to handle cases where images fail to load:
-        document.getElementById('inputImage').onerror = function() {
-            this.src = '/static/default-image.jpg';
+        // Log the image paths when the page is loaded
+        console.log('Input Image src:', document.getElementById('inputImage').src);
+        console.log('Predicted Image src:', document.getElementById('predictedImage').src);
+
+        // Log the src when the image loads successfully
+        document.getElementById('inputImage').onload = function() {
+            console.log('Input Image loaded successfully with src:', this.src);
         };
         
-        document.getElementById('predictedImage').onerror = function() {
-            this.src = '/static/default-image.jpg';
+        document.getElementById('predictedImage').onload = function() {
+            console.log('Predicted Image loaded successfully with src:', this.src);
         };
     </script>
 </body>
