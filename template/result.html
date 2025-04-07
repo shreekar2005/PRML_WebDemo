@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Identification Results</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="result-container">
+        <h1>Face Identification Results</h1>
+        
+        <!-- Input Image Section -->
+        <div class="result-section">
+            <div class="result-title">Input Image</div>
+            <img id="inputImage" class="result-image" src="{{ image_path }}" alt="Input Image">
+        </div>
+        
+        <!-- Predicted Name Section -->
+        <div class="result-section">
+            <div class="result-title">Predicted Person Name</div>
+            <div id="predictedName" class="person-name">{{ predicted_name }}</div>
+        </div>
+        
+        <!-- Predicted Image Section -->
+        <div class="result-section">
+            <div class="result-title">Predicted Person Image</div>
+            <img id="predictedImage" class="result-image" src="{{ predicted_image_path }}" alt="Predicted Person Image">
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="/" class="home-btn">Try Another Image</a>
+        </div>
+    </div>
+
+    <script>
+        // You can add JavaScript here if needed for additional functionality
+        // For example, to handle cases where images fail to load:
+        document.getElementById('inputImage').onerror = function() {
+            this.src = '/static/default-image.jpg';
+        };
+        
+        document.getElementById('predictedImage').onerror = function() {
+            this.src = '/static/default-image.jpg';
+        };
+    </script>
+</body>
+</html>
