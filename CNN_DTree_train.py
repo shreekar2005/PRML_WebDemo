@@ -23,7 +23,7 @@ def load_data(path):
     # Filter the DataFrame
     df_CNN = df_CNN[df_CNN['2048'].isin(labels_to_keep)]
 
-    df_CNN = df_CNN.groupby('2048').apply(lambda x: x.sample(min(len(x), 110), random_state=42)).reset_index(drop=True)
+    df_CNN = df_CNN.groupby('2048').apply(lambda x: x.sample(min(len(x), 190), random_state=42)).reset_index(drop=True)
     # limiting dataset to have max 105 images pre prson
 
 
