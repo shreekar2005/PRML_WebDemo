@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import CNN_DTree
 import LBP_DTree
 import os
@@ -42,6 +42,23 @@ def process_input():
     image_path="uploads/"+image_path[15:]
     print(image_path, predicted_image_path)
     return render_template('result.html',input_image=image_path, predicted_name=predicted_name, predicted_image=predicted_image_path) 
+
+@app.route('/clear_and_try_another')
+def clear_and_try_another():
+    # Get the image_path from the query parameter
+    image_path = request.args.get('image_path')
+    image_path = "static/"+image_path
+    # Make sure the path is safe (this is important to avoid security risks)
+    if image_path and os.path.exists(image_path):
+        try:
+            # Delete the image at the specified path
+            os.remove(image_path)
+            print(f"Image {image_path} deleted successfully.")
+        except Exception as e:
+            print(f"Error deleting image: {e}")
+    
+    # Redirect the user to another page (e.g., the home page or upload page)
+    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":

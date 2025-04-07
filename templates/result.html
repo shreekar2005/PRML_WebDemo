@@ -29,8 +29,9 @@
         </div>
         
         <div style="text-align: center;">
-            <a href="/" class="home-btn">Try Another Image</a>
+            <a href="{{ url_for('clear_and_try_another', image_path=input_image) }}" class="home-btn">Try Another Image</a>
         </div>
+        
     </div>
 
     <script>
