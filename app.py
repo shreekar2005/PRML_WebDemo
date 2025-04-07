@@ -32,11 +32,11 @@ def process_input():
     feature_extraction_method =request.form['feature_extraction_method']
     image_path=save_image()
     if feature_extraction_method == 'CNN_extraction':
-        predicted_name, predicted_image= CNN_DTree.predict(image_path, feature_extraction_method)
+        predicted_name, predicted_image_path= CNN_DTree.predict(image_path)
     elif feature_extraction_method == 'LBP_extraction':
-        predicted_name, predicted_image= LBP_DTree.predict(image_path, feature_extraction_method)
+        predicted_name, predicted_image_path= LBP_DTree.predict(image_path)
 
-    return render_template('process_input.html',input_image=image_path, predicted_name=predicted_name, predicted_image=predicted_image)
+    return render_template('result.html',input_image=image_path, predicted_name=predicted_name, predicted_image=predicted_image_path) 
 
 @app.route('/result')
 def result():

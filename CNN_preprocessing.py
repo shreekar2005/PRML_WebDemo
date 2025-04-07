@@ -15,7 +15,7 @@ resnet = nn.Sequential(*list(resnet.children())[:-1])
 resnet.eval()
 
 # Define a function to extract features from an image
-def extract_features(image_path, model):
+def extract_features(image_path, model = resnet):
     # Load and preprocess the image
     image = Image.open(image_path).convert('RGB')
     preprocess = transforms.Compose([
