@@ -16,14 +16,15 @@
             This is a Web Demo of our Face Identification Project. You can upload an image of your choice select a feature extraction technique, and submit, and we will predict the name of the person whose image you uploaded.
         </div>
         
+        <div class="download-section">
+            <a href="https://drive.google.com/drive/folders/13rQdnpC30X_h9MJ1udx7KUqiFDRLH6KU" class="download-link" target="_blank">
+                Download Image from Drive
+            </a>
+            <p class="hint">(Save the image to your computer first)</p>
+        </div>
+
         <form id="uploadForm" action="/process_input" method="POST" enctype="multipart/form-data">
             <!-- Step 1: Download from Drive -->
-            <div class="download-section">
-                <a href="https://drive.google.com/drive/folders/13rQdnpC30X_h9MJ1udx7KUqiFDRLH6KU" class="action-btn drive-btn" target="_blank">
-                    Download Image from Drive
-                </a>
-                <p class="hint">(Save the image to your computer first)</p>
-            </div>
             
             <!-- Step 2: Upload Local File -->
             <div class="upload-section">
