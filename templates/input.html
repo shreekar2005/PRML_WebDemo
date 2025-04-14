@@ -13,14 +13,16 @@
         <h2>Web Demo</h2>
         
         <div class="about">
-            This is a Web Demo of our Face Identification Project. You can upload an image of your choice select a feature extraction technique, and submit, and we will predict the name of the person whose image you uploaded.
+            This is a Web Demo of our Face Identification Project. We have trained several traditional ML models on 5 persons and are able to predict the person in the input image. You can find images of persons in below link. For this Web Demo, we have used ANN model trained on lfw dataset using ResNet50 extracted features.
+            <br><br>
+            for more information, please visit our <a href="https://agarwalmayank2.github.io/Face_Identification/" target="_blank">Project Page</a>
         </div>
         
         <div class="download-section">
             <a href="https://drive.google.com/drive/folders/13rQdnpC30X_h9MJ1udx7KUqiFDRLH6KU" class="download-link" target="_blank">
-                Download Image from Drive
+                Download Test Images from Drive
             </a>
-            <p class="hint">(Save the image to your computer first)</p>
+            <p class="hint">(Upload image from your local device of any person from our database. You can upload different image of the same person from any other source to test our model)</p>
         </div>
 
         <form id="uploadForm" action="/process_input" method="POST" enctype="multipart/form-data">
