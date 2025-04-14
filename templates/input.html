@@ -19,7 +19,7 @@
         <form id="uploadForm" action="/process_input" method="POST" enctype="multipart/form-data">
             <!-- Step 1: Download from Drive -->
             <div class="download-section">
-                <a href="https://drive.google.com/drive/folders/1bavorJ6fsITRDxQHA9Vs2HiDB397GhqF?usp=sharing" class="action-btn drive-btn" target="_blank">
+                <a href="https://drive.google.com/drive/folders/13rQdnpC30X_h9MJ1udx7KUqiFDRLH6KU" class="action-btn drive-btn" target="_blank">
                     Download Image from Drive
                 </a>
                 <p class="hint">(Save the image to your computer first)</p>
@@ -32,17 +32,6 @@
                     <input type="file" id="fileUpload" name="image" accept="image/*">
                 </label>
                 <div id="fileError" class="error-message">No image uploaded</div>
-            </div>
-            
-            <!-- Feature Selection -->
-            <div class="form-group">
-                <label for="feature_extraction_method">Select Feature Extraction Technique</label>
-                <select id="feature_extraction_method" name="feature_extraction_method">
-                    <option value="">Select an option</option>
-                    <option value="CNN_extraction">CNN_extraction</option>
-                    <option value="LBP_extraction">LBP_extraction</option>
-                </select>
-                <div id="methodError" class="error-message">Please select a feature extraction method</div>
             </div>
             
             <button type="submit" class="submit-btn">Process Image</button>

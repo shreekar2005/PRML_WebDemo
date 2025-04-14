@@ -218,3 +218,19 @@ select {
 .home-btn:hover {
     background-color: #2980b9;
 }
+
+.side-by-side-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.result-image {
+    max-width: 300px;
+    height: auto;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+

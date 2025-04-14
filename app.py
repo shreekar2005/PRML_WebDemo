@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import CNN_DTree
-import LBP_DTree
+import CNN_ANN as CNN_ANN
 import os
 
 app=Flask(__name__)
@@ -29,16 +28,10 @@ def index():
 
 @app.route('/process_input', methods=['GET','POST'])
 def process_input():
-    feature_extraction_method =request.form['feature_extraction_method']
     image_path=save_image()
     predicted_name = None
     predicted_image_path = None
-    if feature_extraction_method == 'CNN_extraction':
-        predicted_name, predicted_image_path= CNN_DTree.predict(image_path)
-    elif feature_extraction_method == 'LBP_extraction':
-        predicted_name, predicted_image_path= LBP_DTree.predict(image_path)
-    else :
-        print("this cannot happen!")
+    predicted_name, predicted_image_path= CNN_ANN.predict(image_path)
     image_path="uploads/"+image_path[15:]
     print(image_path, predicted_image_path)
     return render_template('result.html',input_image=image_path, predicted_name=predicted_name, predicted_image=predicted_image_path) 
